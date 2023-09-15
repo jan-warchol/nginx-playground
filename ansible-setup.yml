@@ -1,0 +1,15 @@
+- name: Bootstrap
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: install apt packages
+      apt:
+        package:
+          - tree
+          - curl
+          - nginx
+        state: latest
+        autoremove: yes
+        update_cache: yes
+        cache_valid_time: 3600  # for faster re-runs
