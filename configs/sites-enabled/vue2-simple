@@ -1,0 +1,21 @@
+server {
+	listen 8001 default_server;
+	listen [::]:8001 default_server;
+
+	server_name _;
+
+	# default root path, not used here but it's a good practice to have some
+	root /vagrant/files;
+
+	location / {
+		# Both "alias" and "root" work here. Trailing slash doesn't matter.
+		alias /vagrant/files/vue2-simple/;
+
+		# Attempt to serve request as file, then fall back to index file so that
+		# SPA will handle routing on its own.
+		# IMPORTANT: path to index must start with slash and include the prefix.
+		try_files $uri /index.html;
+		# NOTE: don't add 404 to the directive above - this wouldn't work:
+		#       try_files $uri /index.html =404;
+	}
+}

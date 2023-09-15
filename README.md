@@ -14,5 +14,8 @@ you can easily edit config files from host OS.
 1.  You can also run `./watch-for-nginx-config-error.sh` outside of the VM to
     get a notification in case of config error
 
+There should be a sample vue app available at [localhost:8001](http://localhost:8001)
+and [localhost:8002/my-app](http://localhost:8002/my-app).
+
 > Note: sometimes you have to reload a page twice in your browser to see the
   effect of config changes.

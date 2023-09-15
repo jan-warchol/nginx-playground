@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkorganizer3_front"]=self["webpackChunkorganizer3_front"]||[]).push([[443],{1168:function(n,t,r){r.r(t),r.d(t,{default:function(){return l}});var u=function(){var n=this;n._self._c;return n._m(0)},e=[function(){var n=this,t=n._self._c;return t("div",{staticClass:"about"},[t("h1",[n._v("This is an about page")])])}],s=r(1001),a={},i=(0,s.Z)(a,u,e,!1,null,null,null),l=i.exports}}]);
+//# sourceMappingURL=about.acbfb337.js.map
