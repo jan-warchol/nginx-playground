@@ -8,14 +8,14 @@ server {
 	root /vagrant/files;
 
 	location / {
-		# Both "alias" and "root" work here. Trailing slash doesn't matter.
+		# Both "alias" and "root" work here. Path should end with a slash (at
+		# least in case of "alias") or assets linked to by index.html won't load.
 		alias /vagrant/files/vue2-simple/;
 
 		# Attempt to serve request as file, then fall back to index file so that
 		# SPA will handle routing on its own.
-		# IMPORTANT: path to index must start with slash and include the prefix.
-		try_files $uri /index.html;
-		# NOTE: don't add 404 to the directive above - this wouldn't work:
-		#       try_files $uri /index.html =404;
+		# Path to index doesn't have to start with a slash as long as alias path
+		# has a trailing slash.
+		try_files $uri /index.html =404;
 	}
 }

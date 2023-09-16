@@ -7,18 +7,25 @@ server {
 	# default root path, not used here but it's a good practice to have some
 	root /vagrant/files;
 
-	# NOTE: for SPA routing to work correctly, the app must be aware
-	#       at what path it is being served! (configure during build)
+	# NOTE:
+	# for SPA routing to work correctly, the app must be aware at what path
+	# it is being served! (configure it during build)
+	# Also, this path shouldn't end with a trailing slash (or visiting /my-app
+	# won't work).
 	location /my-app {
 		# This must be "alias", "root" directive doesn't work here.
-		# Trailing slash doesn't matter.
+		# Either this path must end with a trailing slash, or index path in
+		# try_files must begin with a slash.
 		alias /vagrant/files/vue2-simple-subpath/;
 
 		# Attempt to serve request as file, then fall back to index file so that
-		# SPA will handle routing on its own.
-		# IMPORTANT: path to index must start with slash and include the prefix.
-		try_files $uri /my-app/index.html;
-		# NOTE: don't add 404 to the directive above - this wouldn't work:
-		#       try_files $uri /my-app/index.html =404;
+		# the SPA will handle routing on its own.
+		# Path to index should not include the prefix. Also, it's important that
+		# /index.html isn't the last entry (nginx treats last entry specially),
+		# hence the =404.
+		try_files $uri /index.html =404;
+
+		# See also
+		# https://docs.google.com/spreadsheets/d/1S79esSGsKxUi3yAUpNUj6YY2VSboPyusAd8PHY5P_Io/edit#gid=0
 	}
 }
